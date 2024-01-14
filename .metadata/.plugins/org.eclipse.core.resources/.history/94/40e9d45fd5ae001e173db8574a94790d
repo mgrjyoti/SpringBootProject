@@ -1,0 +1,117 @@
+package com.jspiders.student.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jspiders.student.entity.Student;
+import com.jspiders.student.responce.StudentResponse;
+import com.jspiders.student.service.StudentService;
+
+@RestController
+public class StudentController {
+
+	@Autowired
+	private StudentService studentService;
+	
+	@PostMapping(path = "/student")
+	public ResponseEntity<StudentResponse> addStudent(@RequestBody Student student) {
+		
+		Student student2= studentService.addStudent(student);
+		
+		StudentResponse studentResponse= new StudentResponse();
+		studentResponse.setMessage("Student Added sucessfully...");
+		studentResponse.setStatus(HttpStatus.CREATED.value());
+		studentResponse.setStudent(student2);
+		studentResponse.setStudents(null);
+		return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.CREATED);
+	}
+	
+	@GetMapping(path = "/students")
+	public ResponseEntity<StudentResponse> getAllStudent() {
+		List<Student> student= studentService.getAllStudents();
+		if (student != null) {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.FOUND.value());
+			studentResponse.setStudent(null);
+			studentResponse.setStudents(student);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.FOUND);
+		}
+		else {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student not Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.NOT_FOUND.value());
+			studentResponse.setStudent(null);
+			studentResponse.setStudents(student);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.NOT_FOUND);
+		}	
+	}
+	
+	@GetMapping(path = "/student/{id}")
+	public ResponseEntity<StudentResponse> findStudenById(@PathVariable long id) {
+		Student student = studentService.findStudentById(id);
+		
+		if (student != null) {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.FOUND.value());
+			studentResponse.setStudent(student);
+			studentResponse.setStudents(null);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.FOUND);
+		}
+		else {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student not Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.NOT_FOUND.value());
+			studentResponse.setStudents(null);
+			studentResponse.setStudent(student);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.NOT_FOUND);
+		}	
+	}
+	
+	@DeleteMapping(path = "student/{id}")
+	public ResponseEntity<StudentResponse> deleteStudentById(@PathVariable long id) {
+		Student student= studentService.deleteStudentById(id);
+		
+		if (student != null) {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.OK.value());
+			studentResponse.setStudent(student);
+			studentResponse.setStudents(null);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.OK);
+		}
+		else {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student not Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.NOT_FOUND.value());
+			studentResponse.setStudents(null);
+			studentResponse.setStudent(student);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.NOT_FOUND);
+		}	
+	}
+	
+	@PutMapping(path = "/student")
+	public ResponseEntity<StudentResponse> updateStudent(@RequestBody Student student) {
+	 Student student2=studentService.updateStudent(student);
+	 
+	 StudentResponse studentResponse= new StudentResponse();
+	 studentResponse.setMessage("Student UPdated Sucessfully...");
+	 studentResponse.setStatus(HttpStatus.);
+	 studentResponse.setStudent(student2);
+	 studentResponse.setStudents(null);
+		
+		
+	}
+	
+}

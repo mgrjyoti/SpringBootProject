@@ -1,0 +1,29 @@
+package com.jspiders.employee.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jspiders.employee.entity.Employee;
+import com.jspiders.employee.responce.EmpResponce;
+import com.jspiders.employee.service.EmployeeService;
+
+@RestController
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PostMapping(path = "employee")
+	public ResponseEntity<Employee> addEmployee(Employee employee) {
+		EmpResponce empResponce=new EmpResponce();
+		employeeService.addEmployee(employee);
+			empResponce.setMessage("Employee Added Sucessfully....");
+			empResponce.setStatus(HttpStatus.CREATED.value());
+			empResponce.setEmployee(employee);
+		return ResponseEntity<Employee>(empResponce,HttpStatus.CREATED.value());
+		
+	}
+}

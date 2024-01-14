@@ -1,0 +1,13 @@
+package com.jspiders.employee.controller.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.jspiders.employee.entity.Employee;
+
+@Repository
+public interface EmpRepository extends CrudRepository<Employee,Long> {
+
+	
+
+}

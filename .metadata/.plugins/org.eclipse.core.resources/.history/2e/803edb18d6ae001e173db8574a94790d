@@ -1,0 +1,51 @@
+package com.jspiders.student.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jspiders.student.entity.Student;
+import com.jspiders.student.repository.StudentRepository;
+
+@Service
+public class StudentService {
+
+	@Autowired
+	private StudentRepository studentRepository;
+
+	public Student addStudent(Student student) {
+		return studentRepository.save(student);
+	}
+
+	public List<Student> getAllStudents() {
+		
+		return studentRepository.findAll();
+	}
+
+	public Student findStudentById(long id) {
+		Optional<Student> student= studentRepository.findById(id);
+		if (student.isPresent()) {
+			return student.get();
+		}
+		else {
+			return null;
+		}
+	}
+
+	public Student deleteStudentById(long id) {
+	Student student= studentRepository.deleteById(id);
+		return student;
+	}
+
+	public Student updateStudent(Student student) {
+		return studentRepository.save(student);
+		
+	}
+
+	public Student findByContact(long contact) {
+	
+		return studentRepository.findByContact(contact);
+	}
+}

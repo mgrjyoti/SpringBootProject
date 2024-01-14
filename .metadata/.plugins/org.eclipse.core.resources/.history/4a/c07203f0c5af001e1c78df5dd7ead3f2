@@ -1,0 +1,45 @@
+package com.example.springbootapp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.springbootapp.entity.Employee;
+import com.example.springbootapp.responce.EmployeeResponce;
+import com.example.springbootapp.service.EmployeeService;
+
+@RestController
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PostMapping(path = "/employee")
+	public ResponseEntity<EmployeeResponce> addEmployee(@RequestBody Employee employee) {
+		
+		Employee employee2= employeeService.addEmployee(employee);
+		
+		if (employee2 != null) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Added Successfully...");
+			employeeResponce.setStatus(HttpStatus.CREATED.value());
+			employeeResponce.setEmployee(employee2);
+			employeeResponce.setEmployees(null);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce, HttpStatus.CREATED);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Added Successfully...");
+			employeeResponce.setStatus(HttpStatus.CREATED.value());
+			employeeResponce.setEmployee(employee2);
+			employeeResponce.setEmployees(null);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce, HttpStatus.CREATED);
+
+		}
+	}
+	
+	
+}

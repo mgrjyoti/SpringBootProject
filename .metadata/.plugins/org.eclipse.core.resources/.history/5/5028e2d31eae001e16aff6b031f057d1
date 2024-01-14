@@ -1,0 +1,8 @@
+package com.jspiders.employee.controller.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmpRepository {
+
+}

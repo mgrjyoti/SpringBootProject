@@ -1,0 +1,14 @@
+package com.jspiders.employee.service;
+
+import org.springframework.stereotype.Service;
+
+import com.jspiders.employee.controller.repository.EmpRepository;
+import com.jspiders.employee.entity.Employee;
+
+@Service
+public class EmployeeService {
+	
+	private EmpRepository empRepository;
+
+	
+}

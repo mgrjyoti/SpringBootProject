@@ -1,0 +1,44 @@
+package com.example.springbootapp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.springbootapp.entity.Admin;
+import com.example.springbootapp.responce.AdminResponce;
+import com.example.springbootapp.service.AdminService;
+
+@RestController
+public class AdminController {
+
+	@Autowired
+	private AdminService adminService;
+	
+	@PostMapping(path="/admin")
+	public ResponseEntity<AdminResponce> addAsdmin(@RequestBody Admin admin) {
+	Admin admin2=adminService.addAdmin(admin);
+	
+	if (admin2 != null) {
+		AdminResponce adminResponce= new AdminResponce();
+		adminResponce.setMessage("Admin Account Created Sucessfully.");
+		adminResponce.setStatus(HttpStatus.CREATED.value());
+		adminResponce.setAdmin(admin2);
+		adminResponce.setAdmins(null);
+		return ResponseEntity<AdminResponce>(adminResponce, HttpStatus.CREATED);
+		}
+	else {
+		AdminResponce adminResponce= new AdminResponce();
+		adminResponce.setMessage("Admin Account Created Sucessfully.");
+		adminResponce.setStatus(HttpStatus.CREATED.value());
+		adminResponce.setAdmin(admin2);
+		adminResponce.setAdmins(null);
+		return ResponseEntity<AdminResponce>(adminResponce, HttpStatus.CREATED);
+	}
+		
+	}
+	
+	
+}

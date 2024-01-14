@@ -1,0 +1,41 @@
+package com.example.springbootapp.responce;
+
+import java.util.List;
+
+import com.example.springbootapp.entity.Admin;
+
+import lombok.Data;
+@Data
+public class AdminResponce {
+
+	private String message;
+	private int status;
+	private Admin admin;
+	private List<Admin> admins;
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	public List<Admin> getAdmins() {
+		return admins;
+	}
+	public void setAdmins(List<Admin> admins) {
+		this.admins = admins;
+	}
+	
+	
+}

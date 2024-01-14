@@ -1,0 +1,5 @@
+package com.example.springbootapp.repository;
+
+public class EmployeeRepository {
+
+}

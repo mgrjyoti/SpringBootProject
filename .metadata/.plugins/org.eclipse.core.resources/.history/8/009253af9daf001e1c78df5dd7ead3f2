@@ -1,0 +1,5 @@
+package com.example.springbootapp.responce;
+
+public class AdminResponce {
+
+}

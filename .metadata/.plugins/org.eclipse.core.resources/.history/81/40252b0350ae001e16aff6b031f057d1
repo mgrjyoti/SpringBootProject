@@ -1,0 +1,5 @@
+package com.jspiders.student.repository;
+
+public class StudentRepository {
+
+}

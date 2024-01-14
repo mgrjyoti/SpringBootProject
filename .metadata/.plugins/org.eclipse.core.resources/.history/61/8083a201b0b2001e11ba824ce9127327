@@ -1,0 +1,9 @@
+package com.qspiders.cloud.entity;
+
+public class CloudVendor {
+
+	private int id;
+	private String name;
+	private String address;
+	private long phoneNo;
+}

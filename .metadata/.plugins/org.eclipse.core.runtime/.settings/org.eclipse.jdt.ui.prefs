@@ -1,0 +1,12 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.jspiders.employee.responce.EmpResponce"><rhs name\="com.jspiders.employee.responce.EmpResponce"/></lhs><lhs name\="org.springframework.http.HttpEntity"><rhs name\="org.springframework.http.ResponseEntity"/></lhs><lhs name\="org.springframework.http.ResponseEntity"><rhs name\="org.springframework.http.ResponseEntity"/></lhs><lhs name\="org.springframework.http.HttpStatusCode"><rhs name\="org.springframework.http.HttpStatus"/></lhs><lhs name\="com.jspiders.student.responce.StudentResponse"><rhs name\="com.jspiders.student.responce.StudentResponse"/></lhs><lhs name\="com.jspiders.student.entity.Student"><rhs name\="com.jspiders.student.entity.Student"/></lhs><lhs name\="com.example.springbootapp.responce.AdminResponce"><rhs name\="com.example.springbootapp.responce.AdminResponce"/></lhs><lhs name\="java.lang.Enum"><rhs name\="jakarta.persistence.GenerationType"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="jakarta.persistence.GenerationType"/></lhs><lhs name\="com.example.springbootapp.responce.EmployeeResponce"><rhs name\="com.example.springbootapp.responce.EmployeeResponce"/></lhs><lhs name\="com.example.springbootapp.entity.Employee"><rhs name\="com.example.springbootapp.entity.Employee"/></lhs><lhs name\="com.jspiders.employee.entity.Employee"><rhs name\="com.jspiders.employee.entity.Employee"/></lhs></history>
+content_assist_number_of_computers=15
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=23
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

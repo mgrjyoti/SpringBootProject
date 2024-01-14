@@ -1,0 +1,242 @@
+package com.example.springbootapp.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.springbootapp.entity.Employee;
+import com.example.springbootapp.responce.EmployeeResponce;
+import com.example.springbootapp.service.EmployeeService;
+
+@RestController
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PostMapping(path = "/employee")
+	public ResponseEntity<EmployeeResponce> addEmployee(@RequestBody Employee employee) {
+		
+		Employee employee2= employeeService.addEmployee(employee);
+		
+		if (employee2 != null) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Added Successfully...");
+			employeeResponce.setStatus(HttpStatus.CREATED.value());
+			employeeResponce.setEmployee(employee2);
+			employeeResponce.setEmployees(null);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce, HttpStatus.CREATED);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Added Successfully...");
+			employeeResponce.setStatus(HttpStatus.CREATED.value());
+			employeeResponce.setEmployee(employee2);
+			employeeResponce.setEmployees(null);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce, HttpStatus.CREATED);
+
+		}
+	}
+	
+	@GetMapping(path="/employees")
+	public ResponseEntity<EmployeeResponce> findAllEmployee() {
+		
+		List<Employee> employees = employeeService.findAllEmployee();
+		if (employees != null) {
+			EmployeeResponce employeeResponce= new EmployeeResponce();
+			employeeResponce.setMessage("Employees found Sucessfully...");
+			employeeResponce.setStatus(HttpStatus.FOUND.value());
+			employeeResponce.setEmployees(employees);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.FOUND);
+		}
+		else {
+			EmployeeResponce employeeResponce= new EmployeeResponce();
+			employeeResponce.setMessage("Employees found Sucessfully...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployees(employees);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping(path="/employee/{id}")
+	public ResponseEntity<EmployeeResponce> findById(@RequestParam long id) {
+		Optional<Employee> employee = employeeService.findById(id);
+		if (employee != null ) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Fetched Sucessfully..");
+			employeeResponce.setStatus(HttpStatus.FOUND.value());
+			employeeResponce.setEmployees(null);
+			employeeResponce.setEmployee(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.FOUND);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Not Found...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(null);
+			employeeResponce.setEmployees(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping(path="/employee/{firstName}")
+	public ResponseEntity<EmployeeResponce> findByFirstName(@RequestParam String firstName) {
+		Optional<Employee> employee = employeeService.findByFirstName(firstName);
+		if (employee != null ) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Fetched Sucessfully..");
+			employeeResponce.setStatus(HttpStatus.FOUND.value());
+			employeeResponce.setEmployees(null);
+			employeeResponce.setEmployee(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.FOUND);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Not Found...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(null);
+			employeeResponce.setEmployees(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping(path="/employee/{contact}")
+	public ResponseEntity<EmployeeResponce> findByContact(@RequestParam long contact) {
+		Optional<Employee> employee = employeeService.findByContact(contact);
+		if (employee != null ) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Fetched Sucessfully..");
+			employeeResponce.setStatus(HttpStatus.FOUND.value());
+			employeeResponce.setEmployees(null);
+			employeeResponce.setEmployee(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.FOUND);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Not Found...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(null);
+			employeeResponce.setEmployees(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping(path="/employee/{age}")
+	public ResponseEntity<EmployeeResponce> findByAge(@RequestParam byte age) {
+		List<Employee> employee = employeeService.findByAge(age);
+		if (employee != null ) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Fetched Sucessfully..");
+			employeeResponce.setStatus(HttpStatus.FOUND.value());
+			employeeResponce.setEmployees(employee);
+			employeeResponce.setEmployee(null);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.FOUND);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Not Found...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(null);
+			employeeResponce.setEmployees(employee);
+			return  new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PutMapping(path="/update")
+	public ResponseEntity<EmployeeResponce> update(@RequestBody Employee employee) {
+		Employee employee2 = employeeService.update(employee); 
+		if (employee2 != null) {
+			EmployeeResponce employeeResponce= new EmployeeResponce();
+			employeeResponce.setMessage("Employees Updated Sucessfully...");
+			employeeResponce.setStatus(HttpStatus.OK.value());
+			employeeResponce.setEmployee(employee2);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.OK);
+		}
+		else {
+			EmployeeResponce employeeResponce= new EmployeeResponce();
+			employeeResponce.setMessage("Employees found Sucessfully...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(employee2);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}	
+	}
+	
+	@DeleteMapping(path = "/delete/{id} ")
+	public ResponseEntity<EmployeeResponce> delete(@PathVariable long id) {
+		Optional<Employee> employee2 =  employeeService.deleteById(id);
+		if (employee2.isPresent()) {
+			Employee employee3 = employee2.get();
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee Deleted Successfully..");
+			employeeResponce.setStatus(HttpStatus.OK.value());
+			employeeResponce.setEmployee(employee3);
+			 return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.OK);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee not found..");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(null);
+		    return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@DeleteMapping(path = "/delete")
+	public ResponseEntity<EmployeeResponce> deleteAll(@RequestBody Employee employee) {
+		List<Employee> employees = employeeService.deleteAll(employee);
+		if (employees != null) {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee data deleted sucessfully...");
+			employeeResponce.setStatus(HttpStatus.OK.value());
+			employeeResponce.setEmployee(null);
+			employeeResponce.setEmployee(employee);
+			return new ResponseEntity<EmployeeResponce>(employeeResponce, HttpStatus.OK);
+		}
+		else {
+			EmployeeResponce employeeResponce = new EmployeeResponce();
+			employeeResponce.setMessage("Employee not found...");
+			employeeResponce.setStatus(HttpStatus.NOT_FOUND.value());
+			employeeResponce.setEmployee(null);
+		    return new ResponseEntity<EmployeeResponce>(employeeResponce,HttpStatus.NOT_FOUND);
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

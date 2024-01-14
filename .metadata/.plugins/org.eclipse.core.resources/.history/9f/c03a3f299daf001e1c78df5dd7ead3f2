@@ -1,0 +1,13 @@
+package com.example.springbootapp.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Admin {
+
+	private int id;
+	private String name;
+	private String email;
+	private String contact;
+	private String password;
+}

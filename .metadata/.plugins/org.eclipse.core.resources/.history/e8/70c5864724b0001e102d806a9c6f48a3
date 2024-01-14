@@ -1,0 +1,77 @@
+package com.example.springbootapp.service;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.springbootapp.entity.Employee;
+import com.example.springbootapp.repository.EmployeeRepository;
+
+@Service
+public class EmployeeService {
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	public Employee addEmployee(Employee employee) {
+		return employeeRepository.save(employee);
+	}
+
+	public List<Employee> findAllEmployee() {
+		return employeeRepository.findAll();
+	}
+
+	public Optional<Employee> findById(long id) {
+		return employeeRepository.findById(id);
+	}
+
+	public Optional<Employee> findByFirstName(String firstName) {
+		return employeeRepository.findByFirstName(firstName);
+	}
+
+	public Optional<Employee> findByContact(long contact) {
+		return employeeRepository.findByContact(contact);
+	}
+
+	public List<Employee> findByAge(byte age) {
+		return employeeRepository.findByAge(age);
+	}
+
+	public Employee update(Employee employee) {
+		Optional<Employee> existOptional = employeeRepository.findById(employee.getId());
+	    if (existOptional.isPresent()) {
+	        return employeeRepository.save(employee);
+	    } else {
+	        return null; 
+	    }
+	}
+
+	public Optional<Employee> deleteById(long id) {
+		Optional<Employee> optional = employeeRepository.findById(id);
+		if (optional.isPresent()) {
+			employeeRepository.deleteById(id);
+		}
+		return optional;
+	}
+
+	
+//	public List<Employee> deleteAll(Employee employee) {
+//	    employeeRepository.deleteBySomeProperty(employee.getSomeProperty());
+//	    return Collections.emptyList();
+//	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

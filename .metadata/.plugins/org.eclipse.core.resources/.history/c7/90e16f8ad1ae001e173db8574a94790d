@@ -1,0 +1,65 @@
+package com.jspiders.student.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jspiders.student.entity.Student;
+import com.jspiders.student.responce.StudentResponse;
+import com.jspiders.student.service.StudentService;
+
+@RestController
+public class StudentController {
+
+	@Autowired
+	private StudentService studentService;
+	
+	@PostMapping(path = "/student")
+	public ResponseEntity<StudentResponse> addStudent(@RequestBody Student student) {
+		
+		Student student2= studentService.addStudent(student);
+		
+		StudentResponse studentResponse= new StudentResponse();
+		studentResponse.setMessage("Student Added sucessfully...");
+		studentResponse.setStatus(HttpStatus.CREATED.value());
+		studentResponse.setStudent(student2);
+		studentResponse.setStudents(null);
+		return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.CREATED);
+	}
+	
+	@GetMapping(path = "/students")
+	public ResponseEntity<StudentResponse> getAllStudent() {
+		List<Student> student= studentService.getAllStudents();
+		if (student != null) {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.FOUND.value());
+			studentResponse.setStudent(null);
+			studentResponse.setStudents(student);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.FOUND);
+		}
+		else {
+			StudentResponse studentResponse= new StudentResponse();
+			studentResponse.setMessage("Student Fetched Successfully...");
+			studentResponse.setStatus(HttpStatus.NOT_FOUND.value());
+			studentResponse.setStudent(null);
+			studentResponse.setStudents(student);
+			return new ResponseEntity<StudentResponse>(studentResponse,HttpStatus.NOT_FOUND);
+		}	
+	}
+	
+	public ResponseEntity<StudentResponse> findStudenById(long id) {
+		Student student = studentService.findStudentById(id);
+		
+		return null;
+		
+		
+	}
+	
+}

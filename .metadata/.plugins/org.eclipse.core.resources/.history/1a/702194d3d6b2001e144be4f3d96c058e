@@ -1,0 +1,37 @@
+package com.jspiders.student.responce;
+
+import java.util.List;
+
+import com.jspiders.student.entity.Student;
+
+public class StudentResponse {
+
+	private String message;
+	private Student student;
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	private List<Student> students;
+	private int status;
+}

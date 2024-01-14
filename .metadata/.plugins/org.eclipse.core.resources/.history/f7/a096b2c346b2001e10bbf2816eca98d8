@@ -1,0 +1,38 @@
+package com.jspiders.employee.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jspiders.employee.entity.Employee;
+import com.jspiders.employee.repository.EmployeeRepository;
+
+
+
+@Service
+public class EmployeeService {
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	public Employee addEmployee(Employee employee) {
+		return employeeRepository.save(employee);
+	}
+
+	public List<Employee> getAllEmployee() {
+		
+		return employeeRepository.findAll();
+	}
+
+	public Employee getEmployeeByName(String firstName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Employee getEmployeeById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

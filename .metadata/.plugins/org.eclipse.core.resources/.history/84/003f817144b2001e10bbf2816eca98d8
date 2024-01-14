@@ -1,0 +1,57 @@
+package com.example.springbootapp.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.springbootapp.entity.Admin;
+import com.example.springbootapp.repository.AdminRepository;
+
+@Service
+public class AdminService {
+
+	@Autowired
+	private AdminRepository adminRepository;
+
+	public Admin addAdmin(Admin admin) {
+	return adminRepository.save(admin);
+		
+	}
+
+	public List<Admin> findAllAdmin() {
+		return adminRepository.findAll();
+	}
+
+	public Admin findByNameAndPassword(String name, String password) {
+		return adminRepository.findByNameAndPassword(name, password);
+	}
+
+		public Admin addAdminAccount(Admin admin) {
+		return null;
+	}
+
+	public Admin findAdminById(int id) {
+		Optional<Admin> optional = adminRepository.findById(id);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		else {
+			return null;
+		}
+	}
+
+	public Admin deleteAdminById(int id) {
+		Admin admin= findAdminById(id);
+		adminRepository.deleteById(id);
+		return admin;
+	}
+
+	public Admin updateAdmin(Admin admin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

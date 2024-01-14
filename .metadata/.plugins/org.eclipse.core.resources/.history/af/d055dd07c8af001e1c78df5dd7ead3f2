@@ -1,0 +1,44 @@
+package com.example.springbootapp.responce;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.example.springbootapp.entity.Employee;
+
+import lombok.Data;
+
+@Data
+public class EmployeeResponce {
+
+	private String message;
+	private int status;
+	private Optional<Employee> employee;
+	private List<Employee> employees;
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Optional<Employee> employee2) {
+		this.employee = employee2;
+	}
+		
+	
+}
+

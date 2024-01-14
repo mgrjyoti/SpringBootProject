@@ -1,0 +1,12 @@
+package com.jspiders.student.responce;
+
+import java.util.List;
+
+import com.jspiders.student.entity.Student;
+
+public class StudentResponse {
+
+	private String message;
+	private Student student;
+	
+}

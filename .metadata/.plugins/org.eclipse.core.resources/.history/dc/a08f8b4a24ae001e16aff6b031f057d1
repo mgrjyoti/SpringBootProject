@@ -1,0 +1,15 @@
+package com.jspiders.employee.controller.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.jspiders.employee.entity.Employee;
+
+@Repository
+public interface EmpRepository extends JpaRepository<Employee, Long>{
+
+	Employee addEmployee(Employee employee);
+
+	
+
+}

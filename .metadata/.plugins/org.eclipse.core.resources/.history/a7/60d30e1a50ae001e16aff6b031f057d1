@@ -1,0 +1,5 @@
+package com.jspiders.student.service;
+
+public class StudentService {
+
+}

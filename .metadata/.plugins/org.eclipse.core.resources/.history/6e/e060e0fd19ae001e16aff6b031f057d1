@@ -1,0 +1,39 @@
+package com.jspiders.employee.responce;
+
+import java.util.List;
+
+import com.jspiders.employee.entity.Employee;
+
+import lombok.Data;
+@Data
+public class EmpResponce {
+
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+	private String message;
+	private int status;
+	private Employee employee;
+	private List<Employee> employees;
+}
